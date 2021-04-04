@@ -33,10 +33,9 @@
 		updateActiveList()
 	}
 
-
     const updateActiveList = () => {
 		activeTodos = todos.filter((i) => i.active);
-		updateCounts();
+		updateCounts();e
 	}
 	const updateCounts = () => {
 		uncompletedCount = activeTodos.filter(i => !i.completed).length;

@@ -8,7 +8,7 @@
 	];
 	let newTaskDescription = '';
 	let activeTodos = [];
-	let incompletedCount = 0;
+	let uncompletedCount = 0;
 	let completedCount = 0;
 
 	const onCompletedChanged = () => updateCounts();
@@ -39,7 +39,7 @@
 		updateCounts();
 	}
 	const updateCounts = () => {
-		incompletedCount = activeTodos.filter(i => !i.completed).length;
+		uncompletedCount = activeTodos.filter(i => !i.completed).length;
 		completedCount = activeTodos.filter(i => i.completed).length;
 	}
 
@@ -49,7 +49,7 @@
 
 <main>
 	<div>
-		<span>{incompletedCount} of {activeTodos.length} remaining</span>
+		<span>{uncompletedCount} of {activeTodos.length} remaining</span>
 		<button on:click={onArchiveCompletedClicked} disabled={completedCount==0}>Archive Completed</button>
 	</div>
 	<div>

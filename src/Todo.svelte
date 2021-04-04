@@ -11,8 +11,12 @@
 <main>
     <li>
         <input type="checkbox" bind:checked={item.completed} on:change={onCompletedChanged} data-id={item.id}>
-        <span style="text-decoration: {item.completed ? 'line-through' : ''}">{item.description}</span>
+        <span class={item.completed ? 'completed' : ''}>{item.description}</span>
         <button on:click={onDelete} data-id={item.id}>Delete</button>
     </li>
 </main>
-<style></style>
+<style>
+    .completed {
+        text-decoration: line-through;
+    }
+</style>

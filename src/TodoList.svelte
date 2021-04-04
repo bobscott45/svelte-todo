@@ -11,6 +11,11 @@
 	let incompletedCount = 0;
 	let completedCount = 0;
 
+	const onCompletedChanged = () => updateCounts();
+	const onArchiveCompletedClicked = () => archiveCompleted();
+	const onAddTaskClicked = () => addTask();
+	const onDeleteTask = ev => deleteTask(ev);
+
 	const addTask = () => {
 		if(!newTaskDescription.trim().length) return;
 		const id = todos.map((i) => i.id).reduce( (p,v)=> p>v ? p : v ) + 1;
@@ -28,9 +33,7 @@
 		updateActiveList()
 	}
 
-	const completedChanged = () => {
-		updateCounts();
-	}
+
     const updateActiveList = () => {
 		activeTodos = todos.filter((i) => i.active);
 		updateCounts();
@@ -47,16 +50,16 @@
 <main>
 	<div>
 		<span>{incompletedCount} of {activeTodos.length} remaining</span>
-		<button on:click={archiveCompleted} disabled={completedCount==0}>Archive Completed</button>
+		<button on:click={onArchiveCompletedClicked} disabled={completedCount==0}>Archive Completed</button>
 	</div>
 	<div>
 		<input type="text" bind:value={newTaskDescription} placeholder="enter new todo here" >
-		<button on:click={addTask} disabled={newTaskDescription.trim().length==0}>Add</button>
+		<button on:click={onAddTaskClicked} disabled={newTaskDescription.trim().length==0}>Add</button>
 	</div>
 
 	<ul>
 		{#each activeTodos as item, index (item.id)}
-		<Todo item={item} on:todo-delete={deleteTask} on:todo-completed-changed={completedChanged}></Todo>
+		<Todo item={item} on:todoDelete={onDeleteTask} on:todoCompletedChanged={onCompletedChanged}></Todo>
 		{/each}
 	</ul>
 

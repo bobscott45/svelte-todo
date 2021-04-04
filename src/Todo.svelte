@@ -1,13 +1,12 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+
     const dispatch = createEventDispatcher();
+
     export let item = {};
-    const onDelete = (ev) => {
-        dispatch('todo-delete', ev.target.attributes['data-id'].value);
-    };
-    const onCompletedChanged = (ev) => {
-        dispatch('todo-completed-changed', ev.target.attributes['data-id'].value);
-    }
+
+    const onDelete = ev => dispatch('todoDelete', ev.target.attributes['data-id'].value);
+    const onCompletedChanged = ev => dispatch('todoCompletedChanged', ev.target.attributes['data-id'].value);
 </script>
 <main>
     <li>

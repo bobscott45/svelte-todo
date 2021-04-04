@@ -17,6 +17,7 @@
 </main>
 <style>
     .completed {
+        color: gray;
         text-decoration: line-through;
     }
 </style>
